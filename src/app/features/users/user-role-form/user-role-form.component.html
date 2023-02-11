@@ -1,0 +1,35 @@
+<!--component html goes here -->
+<div class="p-fluid" *ngIf="roles.length > 0">
+  <div class="formgrid grid">
+    <div *ngFor="let rol of roles" class="field-checkbox field col">
+      <p-checkbox
+        name="group2"
+        value="rol"
+        [value]="rol"
+        [(ngModel)]="selectedRoles"
+        [inputId]="rol.id"
+      ></p-checkbox>
+      <label [for]="rol.id">{{ rol.name }}</label>
+    </div>
+  </div>
+</div>
+<div class="form-footer">
+  <button
+    pButton
+    pRipple
+    type="button"
+    [label]="'::Cancel' | abpLocalization"
+    icon="pi pi-times"
+    class="p-button-danger"
+    (click)="dialogRef.close()"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="submit"
+    [label]="'::Save' | abpLocalization"
+    icon="pi pi-check"
+    class="p-button-success"
+    (click)="save()"
+  ></button>
+</div>

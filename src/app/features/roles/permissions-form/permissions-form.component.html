@@ -1,0 +1,27 @@
+<!--component html goes here -->
+<!--component html goes here -->
+<form id="role-form" (ngSubmit)="save()">
+  <div class="p-fluid">
+    <p-tree [value]="nodes" selectionMode="checkbox" [(selection)]="selected"></p-tree>
+  </div>
+  <div class="form-footer">
+    <button
+      pButton
+      pRipple
+      type="button"
+      [label]="'::Cancel' | abpLocalization"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="dialogRef.close()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="submit"
+      [disabled]="saving || readonly"
+      [label]="'::Save' | abpLocalization"
+      icon="pi pi-check"
+      class="p-button-text"
+    ></button>
+  </div>
+</form>

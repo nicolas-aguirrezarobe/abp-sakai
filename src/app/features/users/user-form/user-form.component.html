@@ -1,0 +1,125 @@
+<!--component html goes here -->
+<form id="person-form" [formGroup]="form" (ngSubmit)="save()">
+  <div class="p-fluid">
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="firstName">{{ '::UserName' | abpLocalization }}</label>
+        <input
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              form.controls['userName'].errors &&
+              (form.controls['userName'].touched || form.controls['userName'].dirty)
+          }"
+          type="text"
+          pInputText
+          formControlName="userName"
+        />
+        <div
+          class="labelFormError"
+          *ngIf="
+            form.controls['userName'].errors &&
+            (form.controls['userName'].touched || form.controls['userName'].dirty)
+          "
+        >
+          Username is required
+        </div>
+      </div>
+      <div class="field col">
+        <label for="firstName">{{ '::Name' | abpLocalization }}</label>
+        <input
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              form.controls['name'].errors &&
+              (form.controls['name'].touched || form.controls['name'].dirty)
+          }"
+          type="text"
+          pInputText
+          formControlName="name"
+        />
+        <div
+          class="labelFormError"
+          *ngIf="
+            form.controls['name'].errors &&
+            (form.controls['name'].touched || form.controls['name'].dirty)
+          "
+        >
+          Name is required
+        </div>
+      </div>
+      <div class="field col">
+        <label for="lastName">{{ '::Surname' | abpLocalization }}</label>
+        <input
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              form.controls['surname'].errors &&
+              (form.controls['surname'].touched || form.controls['surname'].dirty)
+          }"
+          type="text"
+          pInputText
+          formControlName="surname"
+        />
+        <div
+          class="labelFormError"
+          *ngIf="
+            form.controls['surname'].errors &&
+            (form.controls['surname'].touched || form.controls['surname'].dirty)
+          "
+        >
+          Surname is required
+        </div>
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="email">{{ '::Email' | abpLocalization }}</label>
+        <input type="text" pInputText formControlName="email" />
+      </div>
+      <div class="field col">
+        <label for="password">{{ '::Password' | abpLocalization }}</label>
+        <input
+          [ngClass]="{
+            'ng-invalid ng-dirty':
+              form.controls['password'].errors &&
+              (form.controls['password'].touched || form.controls['password'].dirty)
+          }"
+          type="text"
+          pInputText
+          formControlName="password"
+        />
+        <div
+          class="labelFormError"
+          *ngIf="
+            form.controls['password'].errors &&
+            (form.controls['password'].touched || form.controls['password'].dirty)
+          "
+        >
+          Password is required
+        </div>
+      </div>
+      <div class="field col col">
+        <label for="phoneNumber">{{ '::PhoneNumber' | abpLocalization }}</label>
+        <input type="text" pInputText formControlName="phoneNumber" />
+      </div>
+    </div>
+  </div>
+  <div class="form-footer">
+    <button
+      pButton
+      pRipple
+      type="button"
+      [label]="'::Cancel' | abpLocalization"
+      icon="pi pi-times"
+      class="p-button-danger"
+      (click)="dialogRef.close()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="submit"
+      [disabled]="saving || !form.valid"
+      [label]="'::Save' | abpLocalization"
+      icon="pi pi-check"
+      class="p-button-success"
+    ></button>
+  </div>
+</form>

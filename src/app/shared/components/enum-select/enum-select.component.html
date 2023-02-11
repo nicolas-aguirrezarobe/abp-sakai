@@ -1,0 +1,5 @@
+<!--component html goes here -->
+<p-dropdown 
+    appendTo="body" [options]="items" (onChange)="change($event.value)" [(ngModel)]="selected"
+    optionLabel="key" optionValue="value" [disabled]="disabled" [showClear]="true" placeholder="Select...">
+</p-dropdown>

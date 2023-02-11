@@ -1,0 +1,43 @@
+<!--component html goes here -->
+<form id="role-form" [formGroup]="form" (ngSubmit)="save()">
+  <div class="p-fluid">
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="name">{{ '::Name' | abpLocalization }}</label>
+        <input type="text" pInputText formControlName="name" autofocus />
+      </div>
+    </div>
+    <div class="formgrid grid">
+      <div class="field col">
+        <label for="isPublic">{{ '::IsPublic' | abpLocalization }}</label
+        ><br />
+        <p-inputSwitch formControlName="isPublic">IsPublic</p-inputSwitch>
+      </div>
+      <div class="field col">
+        <label for="isDefault">{{ '::IsDefault' | abpLocalization }}</label
+        ><br />
+        <p-inputSwitch formControlName="isDefault">IsDefault</p-inputSwitch>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer">
+    <button
+      pButton
+      pRipple
+      type="button"
+      [label]="'::Cancel' | abpLocalization"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="dialogRef.close()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      type="submit"
+      [disabled]="saving"
+      [label]="'::Save' | abpLocalization"
+      icon="pi pi-check"
+      class="p-button-text"
+    ></button>
+  </div>
+</form>

@@ -1,0 +1,98 @@
+<p-table
+  #dt
+  styleClass="p-datatable-sm"
+  [value]="dataSource"
+  [lazy]="true"
+  (onLazyLoad)="loadData($event)"
+  [rows]="rowsPerPage"
+  [paginator]="true"
+  [responsiveLayout]="viewMode"
+  [(selection)]="selected"
+  [rowHover]="true"
+  [dataKey]="dataKey"
+  [sortField]="sortField"
+  [sortOrder]="sortOrder"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [totalRecords]="total"
+  currentPageReportTemplate="In total there are {{ total }} entries"
+  [showCurrentPageReport]="true"
+  [loading]="loading"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex flex-column sm:flex-row sm:justify-content-between sm:align-items-center">
+      <h5 class="m-0">{{ '::Manage Roles' | abpLocalization }}</h5>
+      <span class="p-buttonset">
+        <button
+          pButton
+          pRipple
+          [label]="'::Delete' | abpLocalization"
+          icon="pi pi-trash"
+          class="p-button-danger p-button-sm"
+          *ngIf="selected && selected.length"
+        ></button>
+        <button
+          pButton
+          pRipple
+          [label]="'::New' | abpLocalization"
+          icon="pi pi-plus"
+          class="p-button p-button-sm"
+          (click)="openForm()"
+        ></button>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th pSortableColumn="name">
+        {{ '::Name' | abpLocalization }}
+        <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="isDefault">
+        {{ '::isDefault' | abpLocalization }}
+        <p-sortIcon field="isDefault"></p-sortIcon>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-element>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="element"></p-tableCheckbox>
+      </td>
+      <td><span class="p-column-title">Name</span>{{ element.name }}</td>
+      <td><span class="p-column-title">IsDefault</span>{{ element.isDefault }}</td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-shield"
+          class="p-button-rounded p-button-text p-button"
+          (click)="permissions(element)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-text p-button"
+          (click)="openForm(element.id)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-text p-button-danger"
+          (click)="delete(element.id)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="loadingbody">
+    <ng-container *ngIf="showSkeleton()">
+      <tr *ngFor="let _ of [].constructor(skeletonRows)" [cols]="3" row-skeleton></tr>
+    </ng-container>
+  </ng-template>
+</p-table>

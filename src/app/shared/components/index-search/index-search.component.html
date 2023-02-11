@@ -1,0 +1,12 @@
+<!--component html goes here -->
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input
+    pInputText
+    type="text"
+    (keydown.enter)="submit($event)"
+    [(ngModel)]="searchText"
+    placeholder="Search..."
+    class="p-inputtext p-component p-element p-inputtext-sm"
+  />
+</span>

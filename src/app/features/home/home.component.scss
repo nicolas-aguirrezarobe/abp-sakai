@@ -1,0 +1,23 @@
+#StatusReference li {
+  display: inline;
+  margin-left: 5px;
+}
+
+//colores para los status
+:host ::ng-deep .p-badge.p-badge-success {
+  background-color: #23c55e !important;
+}
+:host ::ng-deep .p-badge.p-badge-info {
+  background-color: #3b82f6 !important;
+}
+:host ::ng-deep .p-badge.p-badge-danger {
+  background-color: #d8342b !important;
+}
+:host ::ng-deep .p-badge.p-badge-warning {
+  background-color: #9e9e9e !important;
+}
+
+#map {
+  height: 600px;
+  width: 100%;
+}

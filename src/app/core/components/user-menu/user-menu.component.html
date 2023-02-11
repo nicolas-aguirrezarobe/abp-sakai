@@ -1,0 +1,22 @@
+<!--component html goes here -->
+<p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" styleClass="layout-config-sidebar w-20rem">
+    <div class="user-menu-header">
+        <p-avatar [label]="getInitals()" size="xlarge" shape="circle" class="p-element"></p-avatar>
+        <h5>{{currentUser?.email}}</h5>
+    </div>
+
+    <div class="grid">
+        <div class="col-3">Name:</div>
+        <div class="col-9">{{currentUser?.name}} {{currentUser?.surName}}</div>
+
+        <div class="col-3">User:</div>
+        <div class="col-9">{{currentUser?.userName}}</div>
+
+        <div class="col-3">Roles:</div>
+        <div class="col-9"><p-tag *ngFor="let rol of currentUser.roles" [value]="rol" styleClass="mr-2"></p-tag></div>
+
+        <div class="col-12"><button pButton pRipple type="button" label="Logout" class="p-button-outlined p-button-danger" (click)="logout()"></button></div>
+    </div>
+
+    
+</p-sidebar>

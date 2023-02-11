@@ -1,0 +1,152 @@
+<p-table
+  #dt
+  styleClass="p-datatable-sm"
+  [value]="dataSource"
+  [lazy]="true"
+  (onLazyLoad)="loadData($event)"
+  [rows]="rowsPerPage"
+  [paginator]="true"
+  responsiveLayout="scroll"
+  [(selection)]="selected"
+  [rowHover]="true"
+  [dataKey]="dataKey"
+  [sortField]="sortField"
+  [sortOrder]="sortOrder"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [totalRecords]="total"
+  currentPageReportTemplate="In total there are {{ total }} entries"
+  [showCurrentPageReport]="true"
+  [loading]="loading"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex flex-column sm:flex-row sm:justify-content-between sm:align-items-center">
+      <h5 class="m-0">Persons</h5>
+      <span class="p-buttonset">
+        <app-index-search class="mr-2"></app-index-search>
+        <button
+          pButton
+          pRipple
+          [label]="'::Delete' | abpLocalization"
+          icon="pi pi-trash"
+          class="p-button-danger p-button-sm mr-2"
+          *ngIf="selected && selected.length"
+        ></button>
+        <button
+          pButton
+          pRipple
+          grant permission="user.create"
+          [label]="'::Export' | abpLocalization"
+          icon="pi pi-upload"
+          class="p-button-secondary p-button-sm mr-2"
+        ></button>
+        <button
+          pButton
+          pRipple
+          [label]="'::New' | abpLocalization"
+          icon="pi pi-plus"
+          class="p-button p-button-sm"
+          (click)="openForm()"
+        ></button>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th pSortableColumn="userName">
+        {{ '::UserName' | abpLocalization }}
+        <p-sortIcon field="userName"></p-sortIcon>
+        <p-columnFilter
+          type="text"
+          field="userName"
+          display="menu"
+          [showOperator]="false"
+        ></p-columnFilter>
+      </th>
+      <th pSortableColumn="name">
+        {{ '::Name' | abpLocalization }}
+        <p-sortIcon field="name"></p-sortIcon>
+        <p-columnFilter
+          type="text"
+          field="name"
+          display="menu"
+          [showOperator]="false"
+        ></p-columnFilter>
+      </th>
+      <th pSortableColumn="surname">
+        {{ '::Surname' | abpLocalization }}
+        <p-sortIcon field="surname"></p-sortIcon>
+        <p-columnFilter
+          type="text"
+          field="surname"
+          display="menu"
+          [showOperator]="false"
+        ></p-columnFilter>
+      </th>
+      <th pSortableColumn="email">
+        {{ '::Email' | abpLocalization }}
+        <p-sortIcon field="Email"></p-sortIcon>
+        <p-columnFilter
+          type="text"
+          field="email"
+          display="menu"
+          [showOperator]="false"
+        ></p-columnFilter>
+      </th>
+      <th pSortableColumn="phoneNumber">
+        {{ '::PhoneNumber' | abpLocalization }}
+        <p-sortIcon field="phoneNumber"></p-sortIcon>
+        <p-columnFilter
+          type="text"
+          field="phoneNumber"
+          display="menu"
+          [showOperator]="false"
+        ></p-columnFilter>
+      </th>
+
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-person>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="person"></p-tableCheckbox>
+      </td>
+      <td><span class="p-column-title"></span>{{ person.userName }}</td>
+      <td><span class="p-column-title"></span>{{ person.name }}</td>
+      <td><span class="p-column-title"></span>{{ person.surname }}</td>
+      <td><span class="p-column-title"></span>{{ person.email }}</td>
+      <td><span class="p-column-title"></span>{{ person.phoneNumber }}</td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-cog"
+          class="p-button-rounded p-button-text p-button"
+          (click)="permissions(person.id)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-text p-button"
+          (click)="openForm(person.id)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-text p-button-danger"
+          (click)="delete(person.id)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="loadingbody">
+    <ng-container *ngIf="showSkeleton()">
+      <tr *ngFor="let _ of [].constructor(skeletonRows)" [cols]="7" row-skeleton></tr>
+    </ng-container>
+  </ng-template>
+</p-table>

@@ -1,0 +1,6 @@
+<!--component html goes here -->
+<ng-template pTemplate="loadingbody" *ngIf="!dataSource">
+    <tr *ngFor="let _ of [].constructor(rows)">
+        <td *ngFor="let _ of [].constructor(cols)"></td>
+    </tr>
+</ng-template>
