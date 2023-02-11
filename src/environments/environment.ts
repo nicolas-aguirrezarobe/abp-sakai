@@ -12,15 +12,15 @@ export const environment = {
   oAuthConfig: {
     issuer: 'https://localhost:44396',  
     redirectUri: baseUrl,
-    clientId: 'Realstar_App',
+    clientId: 'your-client-id',
     responseType: 'code',
-    scope: 'offline_access Realstar',
+    scope: 'offline_access',
     requireHttps: true,
   },
   apis: {
     default: {
       url: 'https://localhost:44396',
-      rootNamespace: 'Realstar',
+      rootNamespace: 'your-app',
     },
   },
   localization: {
